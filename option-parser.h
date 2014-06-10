@@ -5,7 +5,7 @@ typedef struct opt_item {
 	int num_args;
 
 	char *opt_key;
-	int (* process_args) (int num_args, char **args);
+	int (* process_args) (int num_args, char **user_args, void *native_args);
 } opt_item;
 
 typedef struct opt_parser {
@@ -13,6 +13,6 @@ typedef struct opt_parser {
 	opt_item *items;
 } opt_parser;
 
-int opt_parse(int argc, char *argv[], opt_parser *parser);
+int opt_parse(int argc, char *argv[], opt_parser *parser, void *native_args);
 
 #endif

@@ -3,9 +3,7 @@
 
 #include <option-parser.h>
 
-// Test comment for submodule stuff
-
-int opt_parse(int argc, char *argv[], opt_parser *parser) {
+int opt_parse(int argc, char *argv[], opt_parser *parser, void *native_args) {
 	for (int i = 1; i < argc; i++) {
 		char *key = argv[i];
 
@@ -22,13 +20,15 @@ int opt_parse(int argc, char *argv[], opt_parser *parser) {
 					return 1;
 				}
 
-				char *args[item.num_args];
+				char *user_args[item.num_args];
 				for (int k = 0; k < item.num_args; k++) {
 					i++;
-					args[k] = argv[i];
+					user_args[k] = argv[i];
 				}
 
-				item.process_args(item.num_args, args);
+				if (item.process_args(item.num_args, user_args, native_args)) {
+					return 1;
+				}
 
 				found = 1;
 				break;
