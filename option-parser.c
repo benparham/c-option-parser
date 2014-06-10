@@ -3,7 +3,7 @@
 
 #include <option-parser.h>
 
-int opt_parse(int argc, char *argv[], opt_parser *parser, void *native_args) {
+int opt_parse(int argc, char *argv[], opt_parser *parser) {
 	for (int i = 1; i < argc; i++) {
 		char *key = argv[i];
 
@@ -15,18 +15,18 @@ int opt_parse(int argc, char *argv[], opt_parser *parser, void *native_args) {
 			
 			if (strcmp(key, item.opt_key) == 0) {
 
-				if (i + item.num_args >= argc) {
+				if (i + item.num_user_args >= argc) {
 					printf("Not enough arguments supplied for option: '%s'\n", key);
 					return 1;
 				}
 
-				char *user_args[item.num_args];
-				for (int k = 0; k < item.num_args; k++) {
+				char *user_args[item.num_user_args];
+				for (int k = 0; k < item.num_user_args; k++) {
 					i++;
 					user_args[k] = argv[i];
 				}
 
-				if (item.process_args(item.num_args, user_args, native_args)) {
+				if (item.process_args(item.native_args, item.num_user_args, user_args)) {
 					return 1;
 				}
 
