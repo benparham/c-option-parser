@@ -33,6 +33,8 @@ int opt_parse(int argc, char *argv[], opt_parser *parser) {
 				found = 1;
 				break;
 			}
+
+			j++;
 		}
 
 		if (!found) {
