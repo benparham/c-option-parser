@@ -4,7 +4,7 @@ AR = ar
 CFLAGS = -g -Wall -std=c99 -I .
 ARFLAGS = ru
 
-TARGET = option-parser.a
+TARGET = liboptions.a
 
 SRC = option-parser.c
 INC = option-parser.h
