@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "option-parser.h"
+#include <option-parser.h>
 
 int opt_parse(int argc, char *argv[], opt_parser *parser) {
 	for (int i = 1; i < argc; i++) {
@@ -16,7 +16,7 @@ int opt_parse(int argc, char *argv[], opt_parser *parser) {
 			if (strcmp(key, item.opt_key) == 0) {
 
 				if (i + item.num_args >= argc) {
-					printf("Not enough arguments supplied for option '%s'\n", key);
+					printf("Not enough arguments supplied for option: '%s'\n", key);
 					return 1;
 				}
 
@@ -34,7 +34,7 @@ int opt_parse(int argc, char *argv[], opt_parser *parser) {
 		}
 
 		if (!found) {
-			printf("Invalid option '%s'\n", key);
+			printf("Invalid option: '%s'\n", key);
 			return 1;
 		}
 	}
