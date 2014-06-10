@@ -3,6 +3,8 @@
 
 #include <option-parser.h>
 
+// Test comment for submodule stuff
+
 int opt_parse(int argc, char *argv[], opt_parser *parser) {
 	for (int i = 1; i < argc; i++) {
 		char *key = argv[i];
